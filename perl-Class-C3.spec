@@ -4,13 +4,13 @@
 #
 Name     : perl-Class-C3
 Version  : 0.34
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Summary  : 'A pragma to use the C3 method resolution order algorithm'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-Class-C3-man
+BuildRequires : buildreq-cpan
 
 %description
 NAME
@@ -21,12 +21,13 @@ package ClassA;
 use Class::C3;
 sub hello { 'A::hello' }
 
-%package man
-Summary: man components for the perl-Class-C3 package.
-Group: Default
+%package dev
+Summary: dev components for the perl-Class-C3 package.
+Group: Development
+Provides: perl-Class-C3-devel = %{version}-%{release}
 
-%description man
-man components for the perl-Class-C3 package.
+%description dev
+dev components for the perl-Class-C3 package.
 
 
 %prep
@@ -55,9 +56,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -66,10 +67,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Class/C3.pm
-/usr/lib/perl5/site_perl/5.26.1/Class/C3/next.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Class/C3.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Class/C3/next.pm
 
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Class::C3.3
 /usr/share/man/man3/Class::C3::next.3
