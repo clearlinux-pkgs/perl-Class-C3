@@ -4,7 +4,7 @@
 #
 Name     : perl-Class-C3
 Version  : 0.34
-Release  : 4
+Release  : 5
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Summary  : 'A pragma to use the C3 method resolution order algorithm'
@@ -67,8 +67,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Class/C3.pm
-/usr/lib/perl5/vendor_perl/5.26.1/Class/C3/next.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Class/C3.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Class/C3/next.pm
 
 %files dev
 %defattr(-,root,root,-)
