@@ -4,10 +4,10 @@
 #
 Name     : perl-Class-C3
 Version  : 0.34
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
-Summary  : 'A pragma to use the C3 method resolution order algorithm'
+Summary  : A pragma to use the C3 method resolution order algorithm
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
 BuildRequires : buildreq-cpan
@@ -25,6 +25,7 @@ sub hello { 'A::hello' }
 Summary: dev components for the perl-Class-C3 package.
 Group: Development
 Provides: perl-Class-C3-devel = %{version}-%{release}
+Requires: perl-Class-C3 = %{version}-%{release}
 
 %description dev
 dev components for the perl-Class-C3 package.
