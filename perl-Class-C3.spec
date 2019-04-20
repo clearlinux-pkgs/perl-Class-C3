@@ -4,7 +4,7 @@
 #
 Name     : perl-Class-C3
 Version  : 0.34
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Summary  : 'A pragma to use the C3 method resolution order algorithm'
