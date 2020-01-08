@@ -4,12 +4,13 @@
 #
 Name     : perl-Class-C3
 Version  : 0.34
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.34.tar.gz
-Summary  : A pragma to use the C3 method resolution order algorithm
+Summary  : 'A pragma to use the C3 method resolution order algorithm'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
+Requires: perl-Class-C3-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -31,14 +32,24 @@ Requires: perl-Class-C3 = %{version}-%{release}
 dev components for the perl-Class-C3 package.
 
 
+%package perl
+Summary: perl components for the perl-Class-C3 package.
+Group: Default
+Requires: perl-Class-C3 = %{version}-%{release}
+
+%description perl
+perl components for the perl-Class-C3 package.
+
+
 %prep
 %setup -q -n Class-C3-0.34
+cd %{_builddir}/Class-C3-0.34
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -48,7 +59,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,10 +79,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Class/C3.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Class/C3/next.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Class::C3.3
 /usr/share/man/man3/Class::C3::next.3
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Class/C3.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Class/C3/next.pm
