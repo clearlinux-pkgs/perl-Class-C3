@@ -4,12 +4,13 @@
 #
 Name     : perl-Class-C3
 Version  : 0.35
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.35.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/Class-C3-0.35.tar.gz
 Summary  : 'A pragma to use the C3 method resolution order algorithm'
 Group    : Development/Tools
-License  : Artistic-1.0-Perl
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
+Requires: perl-Class-C3-license = %{version}-%{release}
 Requires: perl-Class-C3-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
@@ -30,6 +31,14 @@ Requires: perl-Class-C3 = %{version}-%{release}
 
 %description dev
 dev components for the perl-Class-C3 package.
+
+
+%package license
+Summary: license components for the perl-Class-C3 package.
+Group: Default
+
+%description license
+license components for the perl-Class-C3 package.
 
 
 %package perl
@@ -67,6 +76,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Class-C3
+cp %{_builddir}/Class-C3-0.35/LICENSE %{buildroot}/usr/share/package-licenses/perl-Class-C3/2976cf4612c9dab9cc7fc350c53b3e72db20906f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -85,7 +96,11 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Class::C3.3
 /usr/share/man/man3/Class::C3::next.3
 
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Class-C3/2976cf4612c9dab9cc7fc350c53b3e72db20906f
+
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Class/C3.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Class/C3/next.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Class/C3.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Class/C3/next.pm
